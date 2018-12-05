@@ -46,9 +46,11 @@
                 android:layout_height="match_parent">
 
                 <android.support.design.widget.TextInputEditText
+                    android:id="@+id/midEditView"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="EditText"
+                    android:text="00"
                     android:textAlignment="center"/>
             </android.support.design.widget.TextInputLayout>
         </LinearLayout>
