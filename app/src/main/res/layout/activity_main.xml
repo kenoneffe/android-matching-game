@@ -18,28 +18,32 @@
             android:layout_width="150dp"
             android:layout_height="wrap_content"
             android:background="@drawable/buttonselector"
-            android:text="Game Start" />
+            android:text="Game Start"
+            android:textColor="?attr/colorBackgroundFloating" />
 
         <Button
             android:id="@+id/button2"
             android:layout_width="150dp"
             android:layout_height="wrap_content"
             android:background="@drawable/buttonselector"
-            android:text="Controls" />
+            android:text="Controls"
+            android:textColor="?attr/colorBackgroundFloating" />
 
         <Button
             android:id="@+id/button3"
             android:layout_width="150dp"
             android:layout_height="wrap_content"
             android:background="@drawable/buttonselector"
-            android:text="HIGH SCORE" />
+            android:text="HIGH SCORE"
+            android:textColor="?attr/colorBackgroundFloating" />
 
         <Button
             android:id="@+id/button4"
             android:layout_width="150dp"
             android:layout_height="wrap_content"
             android:background="@drawable/buttonselector"
-            android:text="QUIT" />
+            android:text="QUIT"
+            android:textColor="?attr/colorBackgroundFloating" />
     </LinearLayout>
 
 </LinearLayout>
