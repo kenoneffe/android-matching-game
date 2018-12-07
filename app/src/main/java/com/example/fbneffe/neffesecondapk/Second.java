@@ -14,9 +14,6 @@ public class Second extends AppCompatActivity {
             R.id.button4,R.id.button5,R.id.button6,R.id.button7,
             R.id.button8,R.id.button9,R.id.button10,R.id.button11,
             R.id.button12,R.id.button13,R.id.button14,R.id.button15,
-
-
-
     };
 
     private TextView midEdit;
@@ -28,7 +25,10 @@ public class Second extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.secondactivity);
 
+        //TODO: Ano man yung alphabet ni sir
+        //String []arr = this.getResources().getStringArray()
 
+        //TODO: Copy paste sir's code
         midEdit = (TextView) findViewById(R.id.countdown);
 
         timer();
@@ -57,21 +57,10 @@ public class Second extends AppCompatActivity {
         }.start();
 
     }
+    //TODO: Button Toggle
+    //TODO: Randomizer
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+    //TODO: Just refer to daigler
 
 
 }
