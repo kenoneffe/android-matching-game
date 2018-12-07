@@ -3,12 +3,13 @@ package com.example.fbneffe.neffesecondapk;
 import android.os.CountDownTimer;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.widget.EditText;
+import android.widget.TextView;
 
 
 public class Second extends AppCompatActivity {
 
-    private EditText midEdit;
+    private TextView midEdit;
+
 
 
     @Override
@@ -17,7 +18,7 @@ public class Second extends AppCompatActivity {
         setContentView(R.layout.secondactivity);
 
 
-        midEdit = (EditText) findViewById(R.id.midEditView);
+        midEdit = (TextView) findViewById(R.id.countdown);
 
         timer();
 
@@ -45,6 +46,11 @@ public class Second extends AppCompatActivity {
         }.start();
 
     }
+
+
+
+
+
 
 
 
