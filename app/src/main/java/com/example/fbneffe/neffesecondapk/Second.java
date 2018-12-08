@@ -103,7 +103,7 @@ public class Second extends AppCompatActivity implements View.OnClickListener {
     public void onClick(View view) {
         TextView currButtText = (TextView) findViewById(view.getId());
 
-        currButtText.setText("BOI");
+        currButtText.setText(getIndex(view) + "");
 
         /*
         switch (view.getId()) {
@@ -168,9 +168,17 @@ public class Second extends AppCompatActivity implements View.OnClickListener {
         }*/
     }
 
-    //TODO: Randomizer
+    private int getIndex(View view){
 
-    //TODO: Just refer to daigler
+        for(int i = 0; i < buttons.length; i++){
+            if(buttons[i] == view.getId()){
+                return i;
+            }
+        }
+
+        return 0;
+    }
+
 
 
 }
