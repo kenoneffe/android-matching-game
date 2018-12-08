@@ -95,15 +95,20 @@ public class Second extends AppCompatActivity implements View.OnClickListener {
     }
 
     //TODO: Button Toggle
-    public void toggleButton(View view){
-        view.getId();
+    public void toggleButton(TextView v){
+        v.setText("Button assigned here");
     }
 
     @Override
     public void onClick(View view) {
+        TextView currButtText = (TextView) findViewById(view.getId());
+
+        currButtText.setText("BOI");
+
+        /*
         switch (view.getId()) {
             case R.id.button0:
-                Toast.makeText(this, findViewById(buttons[0]).getId()+" ya boi", Toast.LENGTH_SHORT).show();
+                toggleButton((TextView) findViewById(buttons[0]));
                 break;
 
             case R.id.button1:
@@ -160,7 +165,7 @@ public class Second extends AppCompatActivity implements View.OnClickListener {
                 break;
             default:
                 break;
-        }
+        }*/
     }
 
     //TODO: Randomizer
