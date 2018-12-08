@@ -8,6 +8,8 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.util.Random;
+
 
 public class Second extends AppCompatActivity implements View.OnClickListener {
 
@@ -22,10 +24,8 @@ public class Second extends AppCompatActivity implements View.OnClickListener {
     // For countdown timer
     private TextView midEdit;
 
-    // Alphabet initialization
-    // 16 / 2 = 8, which means we only need 8 letters
-    private char[] alphabet2 = "abcdefgh".toCharArray();
-    private char[] alphabet1 = "abcdefgh".toCharArray();
+    String[] array;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,6 +35,7 @@ public class Second extends AppCompatActivity implements View.OnClickListener {
         // Timer Variables
         midEdit = (TextView) findViewById(R.id.countdown);
         timer();
+        alphabetRandomizer();
 
         //Button Listener Initialization
         Button one = (Button) findViewById(R.id.button0);
@@ -73,15 +74,15 @@ public class Second extends AppCompatActivity implements View.OnClickListener {
 
     }
 
-    public void timer(){
+    public void timer() {
 
-        new CountDownTimer(4000, 100){
+        new CountDownTimer(4000, 100) {
 
             @Override
             public void onTick(long millisUntilFinished) {
 
 
-                midEdit.setText("0" + millisUntilFinished/1000);
+                midEdit.setText("0" + millisUntilFinished / 1000);
             }
 
             @Override
@@ -94,7 +95,35 @@ public class Second extends AppCompatActivity implements View.OnClickListener {
 
     }
 
-    //TODO: Button Toggle
+
+    public void alphabetRandomizer(){
+
+        String []arr = this.getResources().getStringArray(R.array.alphabet);
+        boolean[] chosen_already = new boolean[8];
+        String strr = "";
+
+        for (int i = 0; i < 8; i++) {
+            Button btn = findViewById(buttons[i]);
+            // do random here
+            Random r = new Random();
+            int num = r.nextInt(8);
+
+
+            if (!chosen_already[num]) {
+
+                btn.setText(arr[num] + " -? " + num);
+                chosen_already[num] = true;
+
+            } else {
+                    btn.setText("  -? " + num);
+
+            }
+
+
+        }
+
+    }
+
     public void toggleButton(TextView v){
         v.setText("Button assigned here");
     }
@@ -156,7 +185,6 @@ public class Second extends AppCompatActivity implements View.OnClickListener {
             case R.id.button13:
                 // do your code
                 break;
-
             case R.id.button14:
                 // do your code
                 break;
