@@ -24,7 +24,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight=".1"
-                android:text="TextView"
+                android:text="Correct"
                 android:textAlignment="center"
                 android:textColor="@color/colorPrimaryDark" />
 
@@ -44,6 +44,15 @@
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:orientation="vertical">
+
+
+            <Chronometer
+                android:id="@+id/chronometer"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:textSize="18sp"
+                />
 
             <TextView
                 android:id="@+id/countdown"
@@ -69,7 +78,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight=".1"
-                android:text="TextView"
+                android:text="Incorrect"
                 android:textAlignment="center"
                 android:textColor="@color/colorPrimaryDark" />
 

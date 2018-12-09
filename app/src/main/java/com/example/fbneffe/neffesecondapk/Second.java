@@ -1,10 +1,12 @@
 package com.example.fbneffe.neffesecondapk;
 
 import android.os.CountDownTimer;
+import android.os.SystemClock;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.Chronometer;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -33,6 +35,10 @@ public class Second extends AppCompatActivity implements View.OnClickListener {
     // Correct/Incorrect score variable
     private int correct,incorrect = 0;
 
+    //Chronometer
+    private Chronometer chronometer;
+    private Boolean running;
+
     String[] array;
 
 
@@ -40,6 +46,8 @@ public class Second extends AppCompatActivity implements View.OnClickListener {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.secondactivity);
+
+        //Chronometer
 
 
         // Timer Variables
@@ -52,6 +60,11 @@ public class Second extends AppCompatActivity implements View.OnClickListener {
         incorrect=0;
 
         updateScores();
+
+        //Chronometer assign
+
+        chronometer = findViewById(R.id.chronometer);
+
 
         //Button Listener Initialization
         Button one = (Button) findViewById(R.id.button0);
@@ -92,7 +105,7 @@ public class Second extends AppCompatActivity implements View.OnClickListener {
 
     @Override
     public void onClick(View view) {
-        TextView currButtText = (TextView) findViewById(view.getId());
+        TextView currButtText =  findViewById(view.getId());
 
         currButtText.setText(button_storage[getIndex(view.getId())]);
 
@@ -104,23 +117,32 @@ public class Second extends AppCompatActivity implements View.OnClickListener {
         }
     }
 
+
     public void timer() {
 
         new CountDownTimer(4000, 100) {
 
             @Override
             public void onTick(long millisUntilFinished) {
+                chronometer.setVisibility(View.GONE);
                 midEdit.setText("0" + millisUntilFinished / 1000);
             }
 
             @Override
             public void onFinish() {
+                chronometer.setVisibility(View.VISIBLE);
+                chronometer.setBase(SystemClock.elapsedRealtime());
+                chronometer.start();
                 midEdit.setText("00");
+                midEdit.setVisibility(View.GONE);
                 hideAll();
             }
         }.start();
 
     }
+
+
+
 
     // 2 Seconds timer
     public void twotimer() {
@@ -129,12 +151,12 @@ public class Second extends AppCompatActivity implements View.OnClickListener {
 
             @Override
             public void onTick(long millisUntilFinished) {
-                midEdit.setText("0" + millisUntilFinished / 1000);
+                //midEdit.setText("0" + millisUntilFinished / 1000);
             }
 
             @Override
             public void onFinish() {
-                midEdit.setText("00");
+                //midEdit.setText("00");
                 hidePressed();
                 clear();
             }
@@ -233,7 +255,12 @@ public class Second extends AppCompatActivity implements View.OnClickListener {
             Button btn = (Button) findViewById(buttons[i]);
             btn.setText(button_storage[i]);
             btn.setEnabled(false);
+
+
+
         }
+
+
     }
 
     private void hideAll(){
@@ -243,6 +270,8 @@ public class Second extends AppCompatActivity implements View.OnClickListener {
             btn.setEnabled(true);
         }
     }
+
+
 
 
 }
