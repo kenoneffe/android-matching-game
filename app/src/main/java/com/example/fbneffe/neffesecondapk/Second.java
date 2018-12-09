@@ -51,6 +51,8 @@ public class Second extends AppCompatActivity implements View.OnClickListener {
         correct=0;
         incorrect=0;
 
+        updateScores();
+
         //Button Listener Initialization
         Button one = (Button) findViewById(R.id.button0);
         one.setOnClickListener(this);
