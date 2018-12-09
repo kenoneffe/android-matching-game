@@ -28,6 +28,11 @@ public class Second extends AppCompatActivity implements View.OnClickListener {
     // For countdown timer
     private TextView midEdit;
 
+    // First button pressed and second button pressed: IDs
+    private int first,second = 0;
+    // Correct/Incorrect score variable
+    private int correct,incorrect = 0;
+
     String[] array;
 
 
@@ -42,6 +47,9 @@ public class Second extends AppCompatActivity implements View.OnClickListener {
         timer();
         alphabetRandomizer();
         showAll();
+
+        correct=0;
+        incorrect=0;
 
         //Button Listener Initialization
         Button one = (Button) findViewById(R.id.button0);
@@ -80,6 +88,20 @@ public class Second extends AppCompatActivity implements View.OnClickListener {
 
     }
 
+    @Override
+    public void onClick(View view) {
+        TextView currButtText = (TextView) findViewById(view.getId());
+
+        currButtText.setText(button_storage[getIndex(view.getId())]);
+
+        if(first == 0) {
+            first = view.getId();
+        }else {
+            second = view.getId();
+            validate();
+        }
+    }
+
     public void timer() {
 
         new CountDownTimer(4000, 100) {
@@ -93,6 +115,26 @@ public class Second extends AppCompatActivity implements View.OnClickListener {
             public void onFinish() {
                 midEdit.setText("00");
                 hideAll();
+            }
+        }.start();
+
+    }
+
+    // 2 Seconds timer
+    public void twotimer() {
+        //TODO: Disable other unpressed buttons while doing a countdown
+        new CountDownTimer(2000, 100) {
+
+            @Override
+            public void onTick(long millisUntilFinished) {
+                midEdit.setText("0" + millisUntilFinished / 1000);
+            }
+
+            @Override
+            public void onFinish() {
+                midEdit.setText("00");
+                hidePressed();
+                clear();
             }
         }.start();
 
@@ -124,19 +166,60 @@ public class Second extends AppCompatActivity implements View.OnClickListener {
         }
     }
 
-    public void toggleButton(TextView v){
-        v.setText("Button assigned here");
+    // first button ID and second button ID validation.
+    // This includes the scoring, and clearing of the two variables above.
+    private void validate(){
+        if(button_storage[getIndex(first)].equals(button_storage[getIndex(second)])){
+            //Correct! Set the buttons to disabled
+            Button fbut = (Button) findViewById(first);
+            Button sbut = (Button) findViewById(second);
+
+            fbut.setEnabled(false);
+            sbut.setEnabled(false);
+
+            clear();
+
+            // Scoring
+            correct++;
+        }else{
+            // Wrong, reset the two buttons after a countdown
+            twotimer();
+
+            // Scoring
+            incorrect++;
+        }
+
+        updateScores();
     }
 
-    @Override
-    public void onClick(View view) {
-        TextView currButtText = (TextView) findViewById(view.getId());
-        currButtText.setText(button_storage[getIndex(view)]);
+    // Clears the first and second buttonid pressed
+    private void clear(){
+        first = 0;
+        second = 0;
     }
 
-    private int getIndex(View view){
+    // Returns the two pressed buttons to hide state
+    private void hidePressed(){
+        Button fbut = (Button) findViewById(first);
+        Button sbut = (Button) findViewById(second);
+
+        fbut.setText("???");
+        sbut.setText("???");
+    }
+
+    // Updates the textView with the score variables: correct, incorrect
+    private void updateScores(){
+        TextView correcttxt = (TextView) findViewById(R.id.correctScore);
+        TextView incorrecttxt = (TextView) findViewById(R.id.incorrectScore);
+
+        correcttxt.setText(correct+"");
+        incorrecttxt.setText(incorrect+"");
+    }
+
+    // In: button ID -- return: index of that button ID in the buttons array
+    private int getIndex(int id){
         for(int i = 0; i < buttons.length; i++){
-            if(buttons[i] == view.getId()){
+            if(buttons[i] == id){
                 return i;
             }
         }
